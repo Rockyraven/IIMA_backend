@@ -6,6 +6,8 @@ require('dotenv').config()
 
 const app = express();
 
+const PORT = process.env.PORT || 5001
+
 // Apply CORS middleware before defining routes
 app.use(cors());
 
@@ -15,12 +17,11 @@ app.get("/", (req, res) => {
 
 app.use(express.json());
 app.use("/user", userRouter);
-console.log(process.env.MONGODB_URL)
 
 mongoose.connect(process.env.MONGODB_URL)
     .then(() => console.log("database connected"))
     .catch((err) => console.log(err));
 
-app.listen(5000, () => {
+app.listen(PORT, () => {
     console.log("server is started");
 });
