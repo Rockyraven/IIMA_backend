@@ -2,6 +2,7 @@ const express = require("express");
 const mongoose = require("mongoose");
 const userRouter = require("./router/userRouter");
 const cors = require("cors");
+require('dotenv').config()
 
 const app = express();
 
@@ -14,8 +15,9 @@ app.get("/", (req, res) => {
 
 app.use(express.json());
 app.use("/user", userRouter);
+console.log(process.env.MONGODB_URL)
 
-mongoose.connect("mongodb+srv://admin:admin@cluster0.en2sb1b.mongodb.net/")
+mongoose.connect(process.env.MONGODB_URL)
     .then(() => console.log("database connected"))
     .catch((err) => console.log(err));
 
