@@ -9,7 +9,7 @@ const app = express();
 app.use(cors());
 
 app.get("/", (req, res) => {
-    res.send("working");
+    res.json("working");
 });
 
 app.use(express.json());
